@@ -9,7 +9,6 @@ package main
 
 import (
 	"fmt"
-	"io"
 	"log"
 	"net"
 	"net/http"
@@ -29,10 +28,10 @@ func Dial() error {
 	targets := os.Args[1:]
 	fmt.Println(targets)
 
-	ports := []int{22, 80}
+	port := 80
 
 	for _, v := range targets {
-		_, err := net.DialTimeout("tcp", fmt.Sprintf("%s:%d", v, ports[0]), 5*time.Second)
+		_, err := net.DialTimeout("tcp", fmt.Sprintf("%s:%d", v, port), 5*time.Second)
 		if err != nil {
 			fmt.Println(err)
 			if err = NewGetRequest(v); err != nil {
@@ -40,11 +39,7 @@ func Dial() error {
 				return err
 			}
 		}
-
-		_, err = net.DialTimeout("tcp", fmt.Sprintf("%s:%d", v, ports[1]), 5*time.Second)
-		if err != nil {
-			return NewGetRequest(v)
-		}
+		fmt.Printf("%s - worked fine\n", v)
 	}
 
 	return nil
@@ -54,7 +49,7 @@ func NewGetRequest(v string) error {
 	fmt.Println("Started new get request")
 
 	// Create a new Get request
-	req, err := http.NewRequest("GET", fmt.Sprintf("http://127.0.0.1:3000/%s", v), nil)
+	req, err := http.NewRequest("GET", fmt.Sprintf("http://127.0.0.1:3001/%s", v), nil)
 	if err != nil {
 		fmt.Println("Started here")
 		return err
@@ -67,12 +62,7 @@ func NewGetRequest(v string) error {
 		return err
 	}
 
-	file, err := os.OpenFile("output.txt", os.O_APPEND|os.O_CREATE|os.O_RDWR, 0666)
-	if err != nil {
-		return err
-	}
 	defer resp.Body.Close()
-	io.Copy(file, resp.Body)
 	if err != nil {
 		return err
 	}
