@@ -31,7 +31,7 @@ func Dial() error {
 	port := 80
 
 	for _, v := range targets {
-		_, err := net.DialTimeout("tcp", fmt.Sprintf("%s:%d", v, port), 5*time.Second)
+		_, err := net.DialTimeout("tcp", fmt.Sprintf("%s:%d", v, port), 10*time.Second)
 		if err != nil {
 			fmt.Println(err)
 			if err = NewGetRequest(v); err != nil {
@@ -40,6 +40,7 @@ func Dial() error {
 			}
 		}
 		fmt.Printf("%s - worked fine\n", v)
+
 	}
 
 	return nil
