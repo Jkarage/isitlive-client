@@ -25,4 +25,5 @@ jobs:
           script: |
             cd ~/isitlive-client/
             git pull
+            which go
             make build
