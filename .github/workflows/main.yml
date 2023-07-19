@@ -23,5 +23,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            cd ~/isitlive-client/
-            ./update.sh
+            # Commands to run on the remote server
+            cd ~/itislive-client
+            make build
