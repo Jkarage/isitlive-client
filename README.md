@@ -17,3 +17,5 @@ Put your server domain name or IP instead of Tausi Africa
 go run main.go google.com afropavoanalytics.com
 
 ```
+
+This works hand in hand with the server that sends message and email to verified accounts for notifications
