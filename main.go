@@ -1,5 +1,4 @@
 /*
-Package client
 This is a client that would be run continuously every few minutes. This should be run separately.
 This tries to connect to a server and if fails sends the result to the mail & sms server
 
