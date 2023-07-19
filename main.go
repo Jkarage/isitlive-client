@@ -1,5 +1,5 @@
 /*
-This is a client that would be run continuously every few minutes. This should be run separately.
+This is a client that would be run continuously every few minutes. This and the server should be run separately.
 This tries to connect to a server and if fails sends the result to the mail & sms server
 
 - Author Jkarage
@@ -25,7 +25,6 @@ func Dial() error {
 	// Adding endpoints of the machines using the terminal command line arguments
 	// targets := []string{"", ""}
 	targets := os.Args[1:]
-	fmt.Println(targets)
 
 	port := 80
 
@@ -34,11 +33,9 @@ func Dial() error {
 		if err != nil {
 			fmt.Println(err)
 			if err = NewGetRequest(v); err != nil {
-				fmt.Println("Got an error from request")
 				return err
 			}
 		}
-		fmt.Printf("%s - worked fine\n", v)
 
 	}
 
@@ -46,19 +43,16 @@ func Dial() error {
 }
 
 func NewGetRequest(v string) error {
-	fmt.Println("Started new get request")
 
 	// Create a new Get request
 	req, err := http.NewRequest("GET", fmt.Sprintf("http://127.0.0.1:3001/%s", v), nil)
 	if err != nil {
-		fmt.Println("Started here")
 		return err
 	}
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		fmt.Println("No It started over here")
 		return err
 	}
 
