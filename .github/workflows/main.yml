@@ -25,4 +25,5 @@ jobs:
         script: |
           cd ~/isitlive-client
           git pull origin main
-          make build
+          ls
+          go build -o ./bin/client
