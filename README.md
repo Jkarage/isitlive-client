@@ -9,3 +9,11 @@ Put your server domain name or IP instead of Tausi Africa
 ``` bash
     go run main.go tausi.africa
 ```
+
+### Accepts multiple machines
+
+``` bash
+
+go run main.go google.com afropavoanalytics.com
+
+```
