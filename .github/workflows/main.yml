@@ -25,5 +25,9 @@ jobs:
           script: |
             cd ~/isitlive-client/
             git pull
+<<<<<<< HEAD
             which go
             make build
+=======
+            /usr/local/go/bin/go build -o ./bin/client
+>>>>>>> ac53767 (Updated workflow)
