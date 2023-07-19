@@ -23,7 +23,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            cd ~/isitlive-client
-            git pull origin main
-            pwd
-            go build -o ./bin/client
+            cd ~/isitlive-client/
+            git pull
+            make build
