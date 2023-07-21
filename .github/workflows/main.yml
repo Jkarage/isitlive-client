@@ -26,4 +26,4 @@ jobs:
             # Commands to run on the remote server
             source ~/.bashrc
             cd ~/isitlive-client
-            /usr/local/go/bin/go build -o ./bin/client
+            /usr/local/go/bin/go build -o ./bin/another
