@@ -29,10 +29,9 @@ func Dial() error {
 	port := 80
 
 	for _, v := range targets {
-		_, err := net.DialTimeout("tcp", fmt.Sprintf("%s:%d", v, port), 10*time.Second)
+		_, err := net.DialTimeout("tcp", fmt.Sprintf("%s:%d", v, port), 50*time.Second)
 		if err != nil {
-			fmt.Println(err)
-			if err = NewGetRequest(v); err != nil {
+			if err = NewRequest(v); err != nil {
 				return err
 			}
 		}
@@ -42,7 +41,7 @@ func Dial() error {
 	return nil
 }
 
-func NewGetRequest(v string) error {
+func NewRequest(v string) error {
 
 	// Create a new Get request
 	req, err := http.NewRequest("GET", fmt.Sprintf("http://127.0.0.1:3001/%s", v), nil)
